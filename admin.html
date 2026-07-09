@@ -1592,8 +1592,14 @@
                 });
                 if (response.ok) {
                     showMessage('Products synced to cloud successfully!', 'success');
+                } else if (response.status === 401 || response.status === 403) {
+                    showMessage('Invalid API key or bin ID. Check your JSONBin credentials.', 'error');
+                } else if (response.status === 404) {
+                    showMessage('Bin not found. Check your Bin ID.', 'error');
+                } else if (response.status === 429) {
+                    showMessage('JSONBin rate limit reached. Try again later.', 'error');
                 } else {
-                    showMessage('Failed to sync. Check your credentials.', 'error');
+                    showMessage('Failed to sync (Error ' + response.status + '). Check credentials.', 'error');
                 }
             } catch (e) {
                 showMessage('Network error. Check your connection.', 'error');
@@ -1606,7 +1612,7 @@
             if (!apiKey || !binId) return;
             try {
                 const products = localStorage.getItem('crochetProducts') || '{}';
-                await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+                const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1614,7 +1620,10 @@
                     },
                     body: products
                 });
-            } catch (e) {}
+                if (!res.ok) console.warn('Auto-sync failed:', res.status);
+            } catch (e) {
+                console.warn('Auto-sync error:', e);
+            }
         }
 
         async function restoreFromCloud() {
