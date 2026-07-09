@@ -756,7 +756,7 @@
                 <input type="password" id="adminPinInput" placeholder="Enter Admin PIN" style="width:100%;padding:1rem;border:2px solid #B24B2F;border-radius:10px;font-size:1rem;font-family:'Poppins',sans-serif;text-align:center;" maxlength="6" inputmode="numeric">
                 <button class="login-btn" onclick="loginWithPin()" style="margin-top:0.75rem;width:100%;"><i class="fas fa-lock"></i> Login with PIN</button>
             </div>
-            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #999;">Default PIN: <strong>1234</strong> (change it after login in Settings)</p>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #999;">Default PIN: <strong>ayushi_bharti222</strong> (change it after login in Settings)</p>
         </div>
 
         <!-- Admin Dashboard -->
@@ -897,7 +897,7 @@
                         </button>
                     </div>
                     <div class="cloud-backup-info">
-                        <i class="fas fa-info-circle"></i> Current PIN: <strong id="currentPinDisplay">1234</strong>. Use this PIN to log in if Google sign-in doesn't work.
+                            <i class="fas fa-info-circle"></i> Current PIN: <strong id="currentPinDisplay">ayushi_bharti222</strong>. Use this PIN to log in if Google sign-in doesn't work.
                     </div>
                 </div>
             </div>
@@ -1017,7 +1017,7 @@
         // Login with PIN
         function loginWithPin() {
             const pin = document.getElementById('adminPinInput').value;
-            const savedPin = localStorage.getItem('crochetAdminPin') || '1234';
+            const savedPin = localStorage.getItem('crochetAdminPin') || 'ayushi_bharti222';
             if (pin === savedPin) {
                 localStorage.setItem('crochetAdminPinLoggedIn', 'true');
                 showAdminPanel();
@@ -1104,7 +1104,7 @@
             if (tabName === 'manage-products') {
                 loadAllProducts();
             } else if (tabName === 'settings') {
-                const currentPin = localStorage.getItem('crochetAdminPin') || '1234';
+                const currentPin = localStorage.getItem('crochetAdminPin') || 'ayushi_bharti222';
                 document.getElementById('currentPinDisplay').textContent = currentPin;
             } else if (tabName === 'stats') {
                 loadStatistics();
