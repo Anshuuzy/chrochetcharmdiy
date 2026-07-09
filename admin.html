@@ -1576,12 +1576,14 @@
         }
 
         async function syncToCloud() {
-            const apiKey = localStorage.getItem('jsonbinApiKey');
-            const binId = localStorage.getItem('jsonbinBinId');
+            const apiKey = document.getElementById('jsonbinApiKey').value || localStorage.getItem('jsonbinApiKey');
+            const binId = document.getElementById('jsonbinBinId').value || localStorage.getItem('jsonbinBinId');
             if (!apiKey || !binId) {
                 showMessage('Please configure JSONBin API Key and Bin ID first!', 'error');
                 return;
             }
+            localStorage.setItem('jsonbinApiKey', apiKey);
+            localStorage.setItem('jsonbinBinId', binId);
             const products = localStorage.getItem('crochetProducts') || '{}';
             try {
                 showMessage('Syncing to cloud...', 'success');
@@ -1610,8 +1612,8 @@
         }
 
         async function autoSyncToCloud() {
-            const apiKey = localStorage.getItem('jsonbinApiKey');
-            const binId = localStorage.getItem('jsonbinBinId');
+            const apiKey = document.getElementById('jsonbinApiKey').value || localStorage.getItem('jsonbinApiKey');
+            const binId = document.getElementById('jsonbinBinId').value || localStorage.getItem('jsonbinBinId');
             if (!apiKey || !binId) return;
             try {
                 const products = localStorage.getItem('crochetProducts') || '{}';
@@ -1652,12 +1654,14 @@
         }
 
         async function restoreFromCloud() {
-            const apiKey = localStorage.getItem('jsonbinApiKey');
-            const binId = localStorage.getItem('jsonbinBinId');
+            const apiKey = document.getElementById('jsonbinApiKey').value || localStorage.getItem('jsonbinApiKey');
+            const binId = document.getElementById('jsonbinBinId').value || localStorage.getItem('jsonbinBinId');
             if (!apiKey || !binId) {
                 showMessage('Please configure JSONBin API Key and Bin ID first!', 'error');
                 return;
             }
+            localStorage.setItem('jsonbinApiKey', apiKey);
+            localStorage.setItem('jsonbinBinId', binId);
             try {
                 showMessage('Restoring from cloud...', 'success');
                 const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
