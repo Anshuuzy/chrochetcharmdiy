@@ -1481,8 +1481,14 @@
 
         // Cloud Config Functions
         function loadCloudConfig() {
-            const apiKey = localStorage.getItem('jsonbinApiKey') || '';
-            const binId = localStorage.getItem('jsonbinBinId') || '';
+            let apiKey = localStorage.getItem('jsonbinApiKey');
+            let binId = localStorage.getItem('jsonbinBinId');
+            if (!apiKey || !binId) {
+                apiKey = '$2a$10$DALK00KujlOrxS/lPLfQgefRDd3F.PTPkPvgqDDobw7.wALj32Yui';
+                binId = '6a4f9b63da38895dfe45d964';
+                localStorage.setItem('jsonbinApiKey', apiKey);
+                localStorage.setItem('jsonbinBinId', binId);
+            }
             document.getElementById('jsonbinApiKey').value = apiKey;
             document.getElementById('jsonbinBinId').value = binId;
         }
