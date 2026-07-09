@@ -1245,6 +1245,9 @@
                 // Show success message
                 showMessage(`✅ Product "${name}" added successfully!`, 'success');
                 
+                // Auto sync to cloud
+                autoSyncToCloud();
+                
                 // Reset form
                 event.target.reset();
                 document.getElementById('imagePreviews').innerHTML = '';
@@ -1318,6 +1321,7 @@
                 }
                 showMessage('✅ Product deleted successfully!', 'success');
                 loadAllProducts();
+                autoSyncToCloud();
             }
         }
 
@@ -1381,6 +1385,7 @@
                     showMessage('Product updated successfully!', 'success');
                     closeEditModal();
                     loadAllProducts();
+                    autoSyncToCloud();
                 }
             }
         }
@@ -1482,6 +1487,7 @@
                         // Close modal and reload
                         closeAddImagesModal();
                         loadAllProducts();
+                        autoSyncToCloud();
                     }
                 }
             }).catch(() => {
@@ -1591,6 +1597,23 @@
             } catch (e) {
                 showMessage('Network error. Check your connection.', 'error');
             }
+        }
+
+        async function autoSyncToCloud() {
+            const apiKey = localStorage.getItem('jsonbinApiKey');
+            const binId = localStorage.getItem('jsonbinBinId');
+            if (!apiKey || !binId) return;
+            try {
+                const products = localStorage.getItem('crochetProducts') || '{}';
+                await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': apiKey
+                    },
+                    body: products
+                });
+            } catch (e) {}
         }
 
         async function restoreFromCloud() {

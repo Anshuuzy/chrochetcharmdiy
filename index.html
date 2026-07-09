@@ -1204,28 +1204,31 @@
             const grid = document.getElementById('featuredGrid');
             if (!grid) return;
 
-            let products = [];
+            let allProducts = [];
             try {
                 const stored = localStorage.getItem('crochetProducts');
-                if (stored) products = JSON.parse(stored);
-            } catch (e) {
-                products = [];
-            }
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    Object.values(data).forEach(cat => {
+                        if (Array.isArray(cat)) allProducts.push(...cat);
+                    });
+                }
+            } catch (e) {}
 
-            if (!products || products.length === 0) {
+            if (allProducts.length === 0) {
                 grid.innerHTML = '<div class="featured-empty">✨ Browse our <a href="products.html" style="color:#B24B2F;">products page</a> to see featured items here!</div>';
                 return;
             }
 
-            const shuffled = [...products].sort(() => Math.random() - 0.5);
+            const shuffled = [...allProducts].sort(() => Math.random() - 0.5);
             const selected = shuffled.slice(0, 6);
 
             grid.innerHTML = selected.map(p => `
-                <a href="products.html?product=${encodeURIComponent(p.name || '')}" class="featured-card" target="_blank">
-                    <img src="${p.image || p.images?.[0] || ''}" alt="${p.name || 'Product'}" loading="lazy" onerror="this.alt='🧶'; this.style.display='none'; this.parentNode.innerHTML+='<div style=\'height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;\'>🧶</div>'">
+                <a href="products.html" class="featured-card" target="_blank">
+                    <img src="${p.images?.[0] || p.image || ''}" alt="${p.name || 'Product'}" loading="lazy" onerror="this.style.display='none';this.parentNode.innerHTML+='<div style=\\'height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;\\'>🧶</div>'">
                     <div class="card-body">
                         <h4>${p.name || 'Crochet Item'}</h4>
-                        <div class="price">₹${p.price || p.discountedPrice || 'N/A'}</div>
+                        <div class="price">₹${p.price || 'N/A'}</div>
                     </div>
                 </a>
             `).join('');
