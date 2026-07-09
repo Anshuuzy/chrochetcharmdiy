@@ -748,9 +748,15 @@
             <h1>🧶 Crochet Charm DIY</h1>
             <p>Owner Admin Panel</p>
             <div id="googleSignInButton" style="display: inline-block;"></div>
-            <p style="margin-top: 2rem; font-size: 0.9rem; color: #999; max-width: 420px; margin-left: auto; margin-right: auto;">
-                <i class="fas fa-info-circle"></i> Sign in with the owner Gmail to manage products. Only the authorized Gmail address can access this panel.
-            </p>
+            <div style="margin: 1.5rem 0; position: relative;">
+                <hr style="border: none; border-top: 1px solid #ddd;">
+                <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 0 1rem; color: #999; font-size: 0.9rem;">or</span>
+            </div>
+            <div class="login-form" style="max-width: 320px; margin: 0 auto;">
+                <input type="password" id="adminPinInput" placeholder="Enter Admin PIN" style="width:100%;padding:1rem;border:2px solid #B24B2F;border-radius:10px;font-size:1rem;font-family:'Poppins',sans-serif;text-align:center;" maxlength="6" inputmode="numeric">
+                <button class="login-btn" onclick="loginWithPin()" style="margin-top:0.75rem;width:100%;"><i class="fas fa-lock"></i> Login with PIN</button>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #999;">Default PIN: <strong>1234</strong> (change it after login in Settings)</p>
         </div>
 
         <!-- Admin Dashboard -->
@@ -782,6 +788,9 @@
                 </button>
                 <button class="tab-button" onclick="switchTab(event, 'cloud-backup')">
                     <i class="fas fa-cloud"></i> Cloud Backup
+                </button>
+                <button class="tab-button" onclick="switchTab(event, 'settings')">
+                    <i class="fas fa-cog"></i> Settings
                 </button>
             </div>
 
@@ -870,6 +879,25 @@
                     </div>
                     <div class="cloud-backup-info">
                         <i class="fas fa-info-circle"></i> Your product data will be synced to JSONBin securely. Make sure you have created a bin at <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> first.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings">
+                <h3 style="color: #B24B2F; margin-bottom: 1.5rem;"><i class="fas fa-cog"></i> Settings</h3>
+                <div class="cloud-backup-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Change Admin PIN</label>
+                        <input type="password" id="newAdminPin" placeholder="Enter new PIN (4-6 digits)" maxlength="6" inputmode="numeric" style="max-width:250px;">
+                    </div>
+                    <div class="cloud-backup-buttons">
+                        <button class="btn btn-primary" onclick="changeAdminPin()">
+                            <i class="fas fa-save"></i> Save New PIN
+                        </button>
+                    </div>
+                    <div class="cloud-backup-info">
+                        <i class="fas fa-info-circle"></i> Current PIN: <strong id="currentPinDisplay">1234</strong>. Use this PIN to log in if Google sign-in doesn't work.
                     </div>
                 </div>
             </div>
@@ -978,9 +1006,38 @@
         function checkLoginStatus() {
             const isLoggedIn = localStorage.getItem(ADMIN_STORAGE_KEY);
             const loggedEmail = localStorage.getItem(ADMIN_EMAIL_STORAGE_KEY);
+            const pinLoggedIn = localStorage.getItem('crochetAdminPinLoggedIn');
             if (isLoggedIn === 'true' && loggedEmail && loggedEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
                 showAdminPanel();
+            } else if (pinLoggedIn === 'true') {
+                showAdminPanel();
             }
+        }
+
+        // Login with PIN
+        function loginWithPin() {
+            const pin = document.getElementById('adminPinInput').value;
+            const savedPin = localStorage.getItem('crochetAdminPin') || '1234';
+            if (pin === savedPin) {
+                localStorage.setItem('crochetAdminPinLoggedIn', 'true');
+                showAdminPanel();
+                showMessage('Welcome, admin! You can now manage products.', 'success');
+            } else {
+                showMessage('Incorrect PIN. Please try again.', 'error');
+            }
+        }
+
+        // Change Admin PIN
+        function changeAdminPin() {
+            const newPin = document.getElementById('newAdminPin').value;
+            if (!newPin || newPin.length < 4) {
+                showMessage('Please enter a PIN with at least 4 digits.', 'error');
+                return;
+            }
+            localStorage.setItem('crochetAdminPin', newPin);
+            document.getElementById('currentPinDisplay').textContent = newPin;
+            document.getElementById('newAdminPin').value = '';
+            showMessage('Admin PIN changed successfully!', 'success');
         }
 
         // Handle Google credential response
@@ -1026,6 +1083,7 @@
         function handleLogout() {
             localStorage.removeItem(ADMIN_STORAGE_KEY);
             localStorage.removeItem(ADMIN_EMAIL_STORAGE_KEY);
+            localStorage.removeItem('crochetAdminPinLoggedIn');
             document.getElementById('adminContainer').classList.remove('show');
             document.getElementById('loginContainer').classList.add('show');
             if (window.google && google.accounts && google.accounts.id) {
@@ -1045,6 +1103,9 @@
 
             if (tabName === 'manage-products') {
                 loadAllProducts();
+            } else if (tabName === 'settings') {
+                const currentPin = localStorage.getItem('crochetAdminPin') || '1234';
+                document.getElementById('currentPinDisplay').textContent = currentPin;
             } else if (tabName === 'stats') {
                 loadStatistics();
             } else if (tabName === 'cloud-backup') {
