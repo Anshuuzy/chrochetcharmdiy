@@ -821,6 +821,11 @@
 
         /* Mobile */
         @media (max-width: 768px) {
+            header {
+                padding: 0.6rem 0;
+                backdrop-filter: blur(8px);
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -830,9 +835,9 @@
                 background: rgba(178, 75, 47, 0.95);
                 backdrop-filter: blur(12px);
                 flex-direction: column;
-                padding: 1rem 0;
+                padding: 0.8rem 0;
                 text-align: center;
-                gap: 0.5rem;
+                gap: 0.3rem;
             }
 
             .nav-links.open {
@@ -840,15 +845,27 @@
             }
 
             .nav-links a {
-                padding: 0.8rem;
+                padding: 0.6rem;
+                font-size: 0.9rem;
             }
 
             .hamburger {
                 display: flex;
+                padding: 0.5rem;
+            }
+
+            .hamburger span {
+                width: 20px;
+                height: 2px;
             }
 
             .logo {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
+            }
+
+            nav .cta-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
             }
 
             .hero {

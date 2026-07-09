@@ -1076,6 +1076,7 @@
             document.getElementById('adminContainer').classList.add('show');
             loadAllProducts();
             loadFromCloudOnStart();
+            setTimeout(autoSyncToCloud, 1000);
         }
 
         // Handle Logout
