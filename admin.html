@@ -869,6 +869,9 @@
                         <button class="btn btn-primary" onclick="saveCloudConfig()">
                             <i class="fas fa-save"></i> Save Configuration
                         </button>
+                        <button class="btn btn-secondary" onclick="testCloudConnection()" style="background: #17a2b8; color: white;">
+                            <i class="fas fa-plug"></i> Test Connection
+                        </button>
                         <button class="btn btn-secondary" onclick="syncToCloud()" style="background: #B24B2F; color: white;">
                             <i class="fas fa-upload"></i> Sync to Cloud
                         </button>
@@ -1623,6 +1626,28 @@
                 if (!res.ok) console.warn('Auto-sync failed:', res.status);
             } catch (e) {
                 console.warn('Auto-sync error:', e);
+            }
+        }
+
+        async function testCloudConnection() {
+            const apiKey = document.getElementById('jsonbinApiKey').value;
+            const binId = document.getElementById('jsonbinBinId').value;
+            if (!apiKey || !binId) {
+                showMessage('Please enter API Key and Bin ID first!', 'error');
+                return;
+            }
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+                    method: 'GET',
+                    headers: { 'X-Master-Key': apiKey }
+                });
+                if (response.ok) {
+                    showMessage('Connection successful! Bin exists and key is valid.', 'success');
+                } else {
+                    showMessage('Connection failed (Error ' + response.status + '). Check credentials.', 'error');
+                }
+            } catch (e) {
+                showMessage('Network error. Check your connection.', 'error');
             }
         }
 
