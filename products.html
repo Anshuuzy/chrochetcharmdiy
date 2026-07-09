@@ -1148,7 +1148,6 @@
         document.addEventListener('DOMContentLoaded', async function() {
             showSkeleton();
             await loadProductsFromStorage();
-            await loadFromCloud();
 
             const params = new URLSearchParams(window.location.search);
             const searchQuery = params.get('search');
@@ -1178,28 +1177,6 @@
                     </div>
                 </div>
             `).join('') + '</div>';
-        }
-
-        async function loadFromCloud() {
-            const apiKey = localStorage.getItem('jsonbinApiKey');
-            const binId = localStorage.getItem('jsonbinBinId');
-            if (!apiKey || !binId) return;
-            try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-                    method: 'GET',
-                    headers: { 'X-Master-Key': apiKey }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    const cloudProducts = data.record || data;
-                    const localProducts = JSON.parse(localStorage.getItem('crochetProducts') || '{}');
-                    const merged = mergeProductData(cloudProducts, localProducts);
-                    localStorage.setItem('crochetProducts', JSON.stringify(merged));
-                    productsData = merged;
-                    buildProductMap();
-                }
-            } catch (e) {
-            }
         }
 
         async function loadProductsFromStorage() {
