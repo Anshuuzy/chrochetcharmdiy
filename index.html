@@ -31,18 +31,47 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Pattern overlay */
+        .pattern-overlay {
+            position: relative;
+        }
+        .pattern-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header / Navbar */
         header {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.08);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(178, 75, 47, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
         }
 
         nav {
@@ -63,17 +92,17 @@
             display: flex;
             list-style: none;
             gap: 2rem;
-        } 
+        }
 
         .nav-links a {
-            color: #333;
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .nav-links a:hover {
-            color: #D26B41;
+            color: #ffe0b5;
             transform: translateY(-2px);
         }
 
@@ -95,12 +124,79 @@
             box-shadow: 0 8px 20px rgba(210, 107, 65, 0.35);
         }
 
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 5px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         /* Hero */
         .hero {
-            background: linear-gradient(135deg, #8B320F 0%, #B85A33 50%, #DF8D5F 100%);
-            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #7A2F10 0%, #B24B2F 30%, #D77C58 60%, #E8A87C 100%);
+            padding: 140px 0 100px;
             text-align: center;
-            transition: all 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.2;
+            animation: floatEmoji 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .floating-emoji:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floating-emoji:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; font-size: 3rem; }
+        .floating-emoji:nth-child(3) { top: 50%; left: 8%; animation-delay: 2s; }
+        .floating-emoji:nth-child(4) { top: 60%; right: 5%; animation-delay: 0.5s; font-size: 3.5rem; }
+        .floating-emoji:nth-child(5) { top: 15%; left: 50%; animation-delay: 3s; }
+        .floating-emoji:nth-child(6) { top: 75%; left: 20%; animation-delay: 1.5s; }
+        .floating-emoji:nth-child(7) { top: 35%; right: 15%; animation-delay: 2.5s; }
+        .floating-emoji:nth-child(8) { top: 80%; right: 25%; animation-delay: 3.5s; }
+
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-3deg); }
+            75% { transform: translateY(-25px) rotate(4deg); }
         }
 
         .hero h1 {
@@ -110,6 +206,8 @@
             margin-bottom: 1rem;
             animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
         }
 
         .hero p {
@@ -118,9 +216,9 @@
             color: #fff4ee;
             animation: fadeInUp 1s ease 0.2s both;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 2;
         }
-            
-        
 
         .hero-buttons {
             display: flex;
@@ -128,6 +226,8 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+            z-index: 2;
         }
 
         /* Offers Section */
@@ -135,6 +235,18 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 80px 0;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+        }
+
+        .offers::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b24b2f' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
         .section-title {
@@ -152,13 +264,30 @@
         }
 
         .offer-card {
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            background: linear-gradient(135deg, #fff 0%, #fef5f0 100%);
             padding: 2.5rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             border-top: 5px solid #B24B2F;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(178, 75, 47, 0.06), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .offer-card:hover::after {
+            left: 100%;
         }
 
         .offer-card:hover {
@@ -184,11 +313,97 @@
             color: #333;
         }
 
+        /* Featured Products */
+        .featured-products {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fef5f0 0%, #fff 100%);
+            position: relative;
+        }
+
+        .featured-products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b24b2f' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .featured-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 40px rgba(178, 75, 47, 0.2);
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .featured-card .card-body {
+            padding: 1rem;
+        }
+
+        .featured-card .card-body h4 {
+            font-size: 1rem;
+            color: #2a1810;
+            margin-bottom: 0.3rem;
+        }
+
+        .featured-card .card-body .price {
+            font-weight: 700;
+            color: #B24B2F;
+            font-size: 1.1rem;
+        }
+
+        .featured-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #999;
+            padding: 3rem;
+            font-size: 1.1rem;
+        }
+
         /* Gallery */
         .gallery {
             padding: 80px 0;
-            background: linear-gradient(135deg, #8A3510 0%, #B85632 50%, #D6865A 100%);
+            background: linear-gradient(135deg, #7A2F10 0%, #B24E30 50%, #D6865A 100%);
             transition: background 0.8s ease-in-out;
+            position: relative;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .gallery .section-title {
+            color: #fff;
         }
 
         .search-container {
@@ -202,16 +417,23 @@
             max-width: 500px;
             padding: 12px 20px;
             font-size: 1rem;
-            border: 2px solid #B24B2F;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 50px;
             outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .search-box:focus {
             box-shadow: 0 0 20px rgba(178, 75, 47, 0.4);
-            border-color: #D26B41;
+            border-color: #fff;
             transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.18);
         }
 
         .gallery-grid {
@@ -229,6 +451,11 @@
             background: #ddd;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
         }
 
         .gallery-item.hidden {
@@ -236,8 +463,8 @@
         }
 
         .gallery-item:hover {
-            transform: scale(1.08) rotateZ(2deg);
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            transform: scale(1.06) rotateZ(2deg);
+            box-shadow: 0 15px 40px rgba(178, 75, 47, 0.35);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -247,17 +474,69 @@
             object-fit: cover;
         }
 
+        .gallery-item .cat-label {
+            font-size: 1.3rem;
+            color: #fff;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+        }
+
         .instagram-link {
             text-align: center;
             margin-top: 2rem;
         }
 
+        /* Instagram Feed Placeholder */
+        .instagram-feed {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .ig-feed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .ig-feed-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #B24B2F;
+            transition: all 0.3s;
+        }
+
+        .ig-feed-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(178, 75, 47, 0.15);
+        }
+
         /* Contact */
         .contact {
             padding: 80px 0;
-            background: linear-gradient(135deg, #8B320F 0%, #B24B2F 50%, #D77C58 100%);
+            background: linear-gradient(135deg, #7A2F10 0%, #B24B2F 50%, #D77C58 100%);
             color: white;
             transition: all 0.8s ease;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .contact .section-title {
+            color: #fff;
         }
 
         .contact-grid {
@@ -265,6 +544,21 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
             text-align: center;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .contact-info i {
@@ -278,12 +572,137 @@
             margin-bottom: 1rem;
         }
 
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #B24B2F 0%, #D26B41 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 12px 28px;
+            background: #2a1810;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #3d281e;
+            transform: scale(1.05);
+        }
+
         /* Footer */
         footer {
-            background: #333;
+            background: #1a0f0a;
             color: white;
             text-align: center;
             padding: 2rem 0;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-socials a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: #D26B41;
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 900;
+            background: #25D366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            z-index: 900;
+            background: #B24B2F;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(178, 75, 47, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #D26B41;
+            transform: translateY(-3px);
         }
 
         /* Animations */
@@ -292,7 +711,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -304,14 +722,25 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Modal Styles */
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -331,18 +760,19 @@
         }
 
         .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #fff 0%, #fef5f0 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
             animation: slideUp 0.3s ease;
+            border-top: 5px solid #B24B2F;
         }
 
         .modal-content h2 {
-            color: #d63384;
+            color: #B24B2F;
             margin-bottom: 1rem;
             font-size: 1.8rem;
         }
@@ -362,7 +792,7 @@
         .modal-btn {
             padding: 1rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -405,29 +835,41 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Mobile */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(178, 75, 47, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.8rem;
+            }
+
+            .hamburger {
+                display: flex;
             }
 
             .logo {
@@ -463,22 +905,44 @@
             .modal-content {
                 width: 85%;
             }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .ig-feed-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 
-<body> <!-- Header -->
-    <header>
-        <nav class="container"> <a href="#" class="logo">🧶 Crochet Charm DIY</a>
-            <ul class="nav-links">
+<body>
+    <div class="pattern-overlay">
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">🧶 Crochet Charm DIY</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#offers">Offers</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
-            </ul> <button class="cta-btn" onclick="showContactModal()">📱 Contact Us</button>
+            </ul>
+            <button class="cta-btn" onclick="showContactModal()">📱 Contact Us</button>
         </nav>
-    </header> 
-    
+    </header>
+
     <!-- Contact Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
@@ -500,140 +964,226 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
+        <div class="floating-emoji">🧶</div>
+        <div class="floating-emoji">🧵</div>
+        <div class="floating-emoji">🧸</div>
+        <div class="floating-emoji">🌸</div>
+        <div class="floating-emoji">🎀</div>
+        <div class="floating-emoji">💖</div>
+        <div class="floating-emoji">🧣</div>
+        <div class="floating-emoji">🧤</div>
         <div class="container">
             <h1>Handmade Crochet Magic!</h1>
-            <p>Adorable toys, accesories & gifts made with love in Raipur</p>
-            <div class="hero-buttons"> <a href="#offers" class="cta-btn">Grab Special Offers</a> <a
-                    href="https://www.instagram.com/crochetcharmdiy" target="_blank"
-                    class="cta-btn" style="background: #833ab4;">View Instagram</a> </div>
+            <p>Adorable toys, accessories & gifts made with love in Raipur</p>
+            <div class="hero-buttons">
+                <a href="#offers" class="cta-btn">Grab Special Offers</a>
+                <a href="https://www.instagram.com/crochetcharmdiy" target="_blank"
+                    class="cta-btn" style="background: #833ab4;">View Instagram</a>
+            </div>
         </div>
-    </section> <!-- Offers -->
-    <section id="offers" class="offers">
+    </section>
+
+    <!-- Offers -->
+    <section id="offers" class="offers reveal">
         <div class="container">
             <h2 class="section-title">🎉 Limited Time Offers</h2>
             <div class="offers-grid">
                 <div class="offer-card">
-                    <div class="offer-icon"> <i class="fas fa-percentage"></i> </div>
+                    <div class="offer-icon"><i class="fas fa-percentage"></i></div>
                     <h3>1st Order Special</h3>
                     <p><strong>15% OFF</strong> on your first order!<br>Use code: <code>FIRSTCHARM</code></p>
                 </div>
                 <div class="offer-card">
-                    <div class="offer-icon"> <i class="fas fa-truck"></i> </div>
+                    <div class="offer-icon"><i class="fas fa-truck"></i></div>
                     <h3>Free Shipping</h3>
                     <p>Free delivery on orders up to <strong>₹999</strong><br>Fast shipping across India!</p>
                 </div>
                 <div class="offer-card">
-                    <div class="offer-icon"> <i class="fas fa-gift"></i> </div>
+                    <div class="offer-icon"><i class="fas fa-gift"></i></div>
                     <h3>Custom Orders</h3>
                     <p>Want something special? <br><strong>DM us on Instagram</strong> for custom crochet magic!</p>
                 </div>
             </div>
         </div>
-    </section> <!-- Gallery -->
-    <section id="gallery" class="gallery">
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="featured-products reveal">
+        <div class="container">
+            <h2 class="section-title">⭐ Featured Products</h2>
+            <div class="featured-grid" id="featuredGrid"></div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery reveal">
         <div class="container">
             <h2 class="section-title">✨ Our Crochet Creations</h2>
-            
+
             <div class="search-container">
-                <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search items (e.g., Animals, Decor, Gifts...)" >
+                <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search items (e.g., Animals, Decor, Gifts...)">
             </div>
 
-            <div class="gallery-grid"> <!-- Placeholder images - replace with your actual Instagram photos -->
-                <a href="products.html?category=accessories" class="gallery-item" data-category="accessories"
-                    style="background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    🎀 Accessories </a>
-                <a href="products.html?category=animals" class="gallery-item" data-category="animals"
-                    style="background: linear-gradient(45deg, #a8edea, #fed6e3); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    🐻 Cute Animals </a>
-                <a href="products.html?category=decor" class="gallery-item" data-category="decor"
-                    style="background: linear-gradient(45deg, #ffecd2, #fcb69f); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    🌸 Home Decor </a>
-                <a href="products.html?category=gifts" class="gallery-item" data-category="gifts"
-                    style="background: linear-gradient(45deg, #a1c4fd, #c2e9fb); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    🎁 Gifts & More </a>
-                <a href="products.html?category=custom" class="gallery-item" data-category="custom"
-                    style="background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    🧐 Customised Items </a>
-                <a href="products.html?category=baby" class="gallery-item" data-category="baby"
-                    style="background: linear-gradient(45deg, #d299c2, #fef9d7); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
-                    👶 Baby Gifts </a>
+            <div class="gallery-grid">
+                <a href="products.html?category=accessories" class="gallery-item"
+                    style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #fff;">
+                    <span class="cat-label">🎀 Accessories</span>
+                </a>
+                <a href="products.html?category=animals" class="gallery-item"
+                    style="background: linear-gradient(135deg, #a8edea, #fed6e3); color: #fff;">
+                    <span class="cat-label">🐻 Cute Animals</span>
+                </a>
+                <a href="products.html?category=decor" class="gallery-item"
+                    style="background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #fff;">
+                    <span class="cat-label">🌸 Home Decor</span>
+                </a>
+                <a href="products.html?category=gifts" class="gallery-item"
+                    style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb); color: #fff;">
+                    <span class="cat-label">🎁 Gifts & More</span>
+                </a>
+                <a href="products.html?category=custom" class="gallery-item"
+                    style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #fff;">
+                    <span class="cat-label">🧐 Customised Items</span>
+                </a>
+                <a href="products.html?category=baby" class="gallery-item"
+                    style="background: linear-gradient(135deg, #d299c2, #fef9d7); color: #fff;">
+                    <span class="cat-label">👶 Baby Gifts</span>
+                </a>
             </div>
-            <div class="instagram-link"> <a href="https://www.instagram.com/crochetcharmdiy"
-                    target="_blank" class="cta-btn" style="font-size: 1.2rem; padding: 1rem 2rem;"> <i
-                        class="fab fa-instagram"></i> See More on Instagram </a> </div>
+            <div class="instagram-link">
+                <a href="https://www.instagram.com/crochetcharmdiy" target="_blank" class="cta-btn" style="font-size: 1.2rem; padding: 1rem 2rem;">
+                    <i class="fab fa-instagram"></i> See More on Instagram
+                </a>
+            </div>
         </div>
-    </section> <!-- Contact -->
-    <section id="contact" class="contact">
+    </section>
+
+    <!-- Instagram Feed Placeholder -->
+    <section class="instagram-feed reveal">
         <div class="container">
-            <h2 class="section-title" style="color: white;">📍 Visit Us</h2>
+            <h2 class="section-title">📸 Follow Us on Instagram</h2>
+            <div class="ig-feed-grid">
+                <div class="ig-feed-item"><i class="fab fa-instagram"></i></div>
+                <div class="ig-feed-item">🧶</div>
+                <div class="ig-feed-item">🌸</div>
+                <div class="ig-feed-item">🧸</div>
+                <div class="ig-feed-item">🎀</div>
+                <div class="ig-feed-item">💖</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter reveal">
+        <div class="container">
+            <h2>💌 Stay in Touch</h2>
+            <p>Get updates on new products and special offers!</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing! 🧶');">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact reveal">
+        <div class="container">
+            <h2 class="section-title">📍 Visit Us</h2>
             <div class="contact-grid">
-                <div class="contact-info"> <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
                     <h3>Our Location</h3>
                     <p>Chhattisgarh, Raipur<br> Near Anupam Garden<br> Infront of Ashirwad Hospital</p>
                 </div>
-                     <div class="contact-info"> <i class="fab fa-instagram"></i>
+                <div class="contact-info">
+                    <i class="fab fa-instagram"></i>
                     <h3>Follow Us</h3>
                     <p>@crochetcharmdiy<br>@craftyayuu<br>DM for orders & queries</p>
                 </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>ayushisharmaa1718@gmail.com<br>We reply within 24 hours</p>
+                </div>
             </div>
         </div>
-    </section> <!-- Footer -->
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/crochetcharmdiy" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:ayushisharmaa1718@gmail.com" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/917977830031?text=Hi%20Crochet%20Charm%20DIY" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
             <p>&copy; 2024 Crochet Charm DIY. Made with ❤️ in Raipur. All rights reserved.</p>
         </div>
     </footer>
-    <script> 
-        // Smooth scrolling 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => { 
-            anchor.addEventListener('click', function (e) { 
-                e.preventDefault(); 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); 
-            }); 
-        }); 
-        
-        // Navbar scroll effect 
-        window.addEventListener('scroll', () => { 
-            const header = document.querySelector('header'); 
-            if (window.scrollY > 100) { 
-                header.style.background = 'rgba(255, 154, 158, 0.95)'; 
-                header.style.backdropFilter = 'blur(10px)'; 
-            } else { 
-                header.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)'; 
-                header.style.backdropFilter = 'none'; 
-            } 
-        }); 
-        
-        // Gallery search functionality 
-        const searchBox = document.getElementById('searchBox'); 
-        searchBox.addEventListener('keypress', (e) => { 
-            if (e.key === 'Enter') { 
-                const searchTerm = e.target.value.trim(); 
-                if (searchTerm) { 
-                    window.location.href = 'products.html?search=' + encodeURIComponent(searchTerm); 
-                } 
-            } 
-        }); 
-        
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/917977830031?text=Hi%20Crochet%20Charm%20DIY" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Navbar glass-morphism scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Gallery search functionality
+        const searchBox = document.getElementById('searchBox');
+        if (searchBox) {
+            searchBox.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const searchTerm = e.target.value.trim();
+                    if (searchTerm) {
+                        window.location.href = 'products.html?search=' + encodeURIComponent(searchTerm);
+                    }
+                }
+            });
+        }
+
         // Contact Modal Functions
         function showContactModal() {
             document.getElementById('contactModal').classList.add('show');
         }
-        
+
         function closeContactModal() {
             document.getElementById('contactModal').classList.remove('show');
         }
-        
+
         function redirectToInstagram() {
             window.open('https://www.instagram.com/crochetcharmdiy', '_blank');
             closeContactModal();
         }
-        
+
         function redirectToGmail() {
             window.location.href = 'mailto:ayushisharmaa1718@gmail.com?subject=Hello%20Crochet%20Charm%20DIY&body=Hi,%20I%20would%20like%20to%20know%20more%20about%20your%20products!';
             closeContactModal();
         }
-        
+
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             const modal = document.getElementById('contactModal');
@@ -641,6 +1191,74 @@
                 closeContactModal();
             }
         });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Featured Products from localStorage
+        function renderFeaturedProducts() {
+            const grid = document.getElementById('featuredGrid');
+            if (!grid) return;
+
+            let products = [];
+            try {
+                const stored = localStorage.getItem('crochetProducts');
+                if (stored) products = JSON.parse(stored);
+            } catch (e) {
+                products = [];
+            }
+
+            if (!products || products.length === 0) {
+                grid.innerHTML = '<div class="featured-empty">✨ Browse our <a href="products.html" style="color:#B24B2F;">products page</a> to see featured items here!</div>';
+                return;
+            }
+
+            const shuffled = [...products].sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, 6);
+
+            grid.innerHTML = selected.map(p => `
+                <a href="products.html?product=${encodeURIComponent(p.name || '')}" class="featured-card" target="_blank">
+                    <img src="${p.image || p.images?.[0] || ''}" alt="${p.name || 'Product'}" loading="lazy" onerror="this.alt='🧶'; this.style.display='none'; this.parentNode.innerHTML+='<div style=\'height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;\'>🧶</div>'">
+                    <div class="card-body">
+                        <h4>${p.name || 'Crochet Item'}</h4>
+                        <div class="price">₹${p.price || p.discountedPrice || 'N/A'}</div>
+                    </div>
+                </a>
+            `).join('');
+        }
+        renderFeaturedProducts();
     </script>
 </body>
 

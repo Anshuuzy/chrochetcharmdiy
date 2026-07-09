@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            background: linear-gradient(135deg, #f5e6da 0%, #e8d5c4 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -31,12 +31,15 @@
 
         /* Login Form */
         .login-container {
-            background: white;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(42, 24, 16, 0.25);
             text-align: center;
             display: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .login-container.show {
@@ -44,7 +47,7 @@
         }
 
         .login-container h1 {
-            color: #d63384;
+            color: #B24B2F;
             margin-bottom: 1rem;
             font-size: 2rem;
         }
@@ -62,7 +65,7 @@
 
         .login-form input {
             padding: 1rem;
-            border: 2px solid #d63384;
+            border: 2px solid #B24B2F;
             border-radius: 10px;
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
@@ -70,33 +73,34 @@
 
         .login-form input:focus {
             outline: none;
-            box-shadow: 0 0 15px rgba(214, 51, 132, 0.3);
+            box-shadow: 0 0 15px rgba(178, 75, 47, 0.3);
+            border-color: #D26B41;
         }
 
         .login-btn {
             padding: 1rem;
-            background: #d63384;
+            background: linear-gradient(135deg, #B24B2F, #D26B41);
             color: white;
             border: none;
             border-radius: 10px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .login-btn:hover {
-            background: #ff9a9e;
+            background: linear-gradient(135deg, #D26B41, #B24B2F);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(178, 75, 47, 0.4);
         }
 
         /* Admin Dashboard */
         .admin-container {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(42, 24, 16, 0.25);
             display: none;
         }
 
@@ -114,7 +118,7 @@
         }
 
         .admin-header h1 {
-            color: #d63384;
+            color: #B24B2F;
             font-size: 2rem;
         }
 
@@ -150,13 +154,19 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .admin-tabs button:hover {
+            color: #B24B2F;
+            background: rgba(178, 75, 47, 0.05);
         }
 
         .admin-tabs button.active {
-            color: #d63384;
-            border-bottom-color: #d63384;
+            color: #B24B2F;
+            border-bottom-color: #B24B2F;
         }
 
         /* Tab Content */
@@ -196,7 +206,8 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #d63384;
+            border-color: #B24B2F;
+            box-shadow: 0 0 0 3px rgba(178, 75, 47, 0.1);
         }
 
         .form-group textarea {
@@ -241,18 +252,22 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
-            background: #d63384;
+            background: linear-gradient(135deg, #B24B2F, #D26B41);
             color: white;
         }
 
         .btn-primary:hover {
-            background: #ff9a9e;
+            background: linear-gradient(135deg, #D26B41, #B24B2F);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(178, 75, 47, 0.3);
         }
 
         .btn-secondary {
@@ -265,12 +280,14 @@
         }
 
         .btn-danger {
-            background: #ff6b6b;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
         }
 
         .btn-danger:hover {
-            background: #ff5252;
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
         }
 
         /* Products List */
@@ -280,13 +297,20 @@
         }
 
         .product-item {
-            background: #f8f9fa;
+            background: #faf6f3;
             padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 5px solid #d63384;
+            border-radius: 12px;
+            border-left: 5px solid #B24B2F;
             display: flex;
             gap: 1.5rem;
             align-items: flex-start;
+            box-shadow: 0 4px 15px rgba(42, 24, 16, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            box-shadow: 0 8px 25px rgba(42, 24, 16, 0.12);
+            transform: translateY(-2px);
         }
 
         .product-item-image {
@@ -298,7 +322,7 @@
         }
 
         .product-item-image.placeholder {
-            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            background: linear-gradient(135deg, #D26B41, #f0dac8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -310,7 +334,7 @@
         }
 
         .product-item-content h3 {
-            color: #d63384;
+            color: #2a1810;
             margin-bottom: 0.5rem;
         }
 
@@ -363,11 +387,18 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #d63384 0%, #ff9a9e 100%);
+            background: linear-gradient(135deg, #B24B2F 0%, #D26B41 100%);
             color: white;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(178, 75, 47, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(178, 75, 47, 0.3);
         }
 
         .stat-card h3 {
@@ -431,7 +462,7 @@
             max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px rgba(42, 24, 16, 0.2);
             animation: slideUp 0.3s ease;
         }
 
@@ -444,7 +475,7 @@
         }
 
         .modal-header h2 {
-            color: #d63384;
+            color: #B24B2F;
             margin: 0;
             font-size: 1.5rem;
         }
@@ -483,6 +514,8 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(-10px);
@@ -491,13 +524,107 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e6e0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D26B41;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B24B2F;
+        }
+
+        /* Cloud Backup */
+        .cloud-backup-form {
+            max-width: 500px;
+        }
+        .cloud-backup-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .cloud-backup-form .form-group label {
+            display: block;
+            color: #2a1810;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .cloud-backup-form .form-group label i {
+            margin-right: 0.5rem;
+            color: #B24B2F;
+        }
+        .cloud-backup-form .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+        .cloud-backup-form .form-group input:focus {
+            outline: none;
+            border-color: #B24B2F;
+            box-shadow: 0 0 0 3px rgba(178, 75, 47, 0.1);
+        }
+        .cloud-backup-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .cloud-backup-buttons .btn {
+            flex: 1;
+            min-width: 160px;
+            justify-content: center;
+        }
+        .cloud-backup-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #faf6f3;
+            border-radius: 8px;
+            border-left: 4px solid #B24B2F;
+            color: #2a1810;
+            font-size: 0.9rem;
+        }
+        .cloud-backup-info a {
+            color: #B24B2F;
+            font-weight: 600;
+        }
+
+        /* Product actions extra */
+        .product-item-actions .edit-btn-primary {
+            background: #B24B2F;
+            color: white;
+        }
+        .product-item-actions .edit-btn-primary:hover {
+            background: #D26B41;
+            transform: translateY(-2px);
+        }
 
         /* Mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             .login-container,
             .admin-container {
                 padding: 1.5rem;
+            }
+
+            .login-container {
+                padding: 2rem 1.5rem;
             }
 
             .admin-header {
@@ -506,25 +633,70 @@
                 text-align: center;
             }
 
+            .admin-header h1 {
+                font-size: 1.5rem;
+            }
+
             .admin-tabs {
                 flex-direction: column;
+                gap: 0;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .admin-tabs button {
                 text-align: left;
+                font-size: 0.9rem;
+                padding: 0.8rem 1rem;
+                white-space: nowrap;
+            }
+
+            .admin-tabs button i {
+                width: 20px;
             }
 
             .product-item {
                 flex-direction: column;
                 text-align: center;
+                padding: 1rem;
+            }
+
+            .product-item-image {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
             }
 
             .product-item-actions {
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .product-item-actions button {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
 
             .form-buttons {
                 flex-direction: column;
+            }
+
+            .form-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-card h3 {
+                font-size: 1.5rem;
             }
 
             .modal-box {
@@ -536,14 +708,33 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+                padding: 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
             }
 
             .modal-footer {
                 flex-direction: column;
+                padding: 1rem;
             }
 
             .modal-footer button {
                 width: 100%;
+                justify-content: center;
+            }
+
+            .cloud-backup-buttons {
+                flex-direction: column;
+            }
+
+            .cloud-backup-buttons .btn {
+                width: 100%;
+            }
+
+            #add-product div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
@@ -580,7 +771,7 @@
 
             <!-- Tabs -->
             <div class="admin-tabs">
-                    <button class="tab-button active" onclick="switchTab(event, 'add-product')">
+                <button class="tab-button active" onclick="switchTab(event, 'add-product')">
                     <i class="fas fa-plus"></i> Add Product
                 </button>
                 <button class="tab-button" onclick="switchTab(event, 'manage-products')">
@@ -588,6 +779,9 @@
                 </button>
                 <button class="tab-button" onclick="switchTab(event, 'stats')">
                     <i class="fas fa-chart-bar"></i> Statistics
+                </button>
+                <button class="tab-button" onclick="switchTab(event, 'cloud-backup')">
+                    <i class="fas fa-cloud"></i> Cloud Backup
                 </button>
             </div>
 
@@ -648,7 +842,36 @@
             <!-- Statistics Tab -->
             <div class="tab-content" id="stats">
                 <div class="stats-grid" id="statsGrid"></div>
-                <h3 style="color: #963b68; margin-top: 2rem; margin-bottom: 1rem;">Total Products: <span id="totalProducts">0</span></h3>
+                <h3 style="color: #B24B2F; margin-top: 2rem; margin-bottom: 1rem;">Total Products: <span id="totalProducts">0</span></h3>
+            </div>
+
+            <!-- Cloud Backup Tab -->
+            <div class="tab-content" id="cloud-backup">
+                <h3 style="color: #B24B2F; margin-bottom: 1.5rem;"><i class="fas fa-cloud-upload-alt"></i> Cloud Backup (JSONBin)</h3>
+                <div class="cloud-backup-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> JSONBin API Key</label>
+                        <input type="password" id="jsonbinApiKey" placeholder="Enter your JSONBin API master key">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-folder"></i> Bin ID</label>
+                        <input type="text" id="jsonbinBinId" placeholder="Enter your JSONBin Bin ID">
+                    </div>
+                    <div class="cloud-backup-buttons">
+                        <button class="btn btn-primary" onclick="saveCloudConfig()">
+                            <i class="fas fa-save"></i> Save Configuration
+                        </button>
+                        <button class="btn btn-secondary" onclick="syncToCloud()" style="background: #B24B2F; color: white;">
+                            <i class="fas fa-upload"></i> Sync to Cloud
+                        </button>
+                        <button class="btn btn-secondary" onclick="restoreFromCloud()" style="background: #D26B41; color: white;">
+                            <i class="fas fa-download"></i> Restore from Cloud
+                        </button>
+                    </div>
+                    <div class="cloud-backup-info">
+                        <i class="fas fa-info-circle"></i> Your product data will be synced to JSONBin securely. Make sure you have created a bin at <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> first.
+                    </div>
+                </div>
             </div>
 
             <!-- Add Images Modal -->
@@ -672,6 +895,38 @@
                         <button class="btn btn-secondary" onclick="closeAddImagesModal()">Cancel</button>
                         <button class="btn btn-primary" onclick="handleAddImagesToProduct()">
                             <i class="fas fa-plus"></i> Add Images
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Product Modal -->
+            <div id="editProductModal" class="modal-overlay">
+                <div class="modal-box">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-edit"></i> Edit Product</h2>
+                        <button class="modal-close" onclick="closeEditModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editProductId">
+                        <input type="hidden" id="editProductCategory">
+                        <div class="form-group">
+                            <label><i class="fas fa-tag"></i> Product Name</label>
+                            <input type="text" id="editProductName" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-align-left"></i> Description</label>
+                            <textarea id="editProductDescription" rows="3" placeholder="Product description..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-rupee-sign"></i> Price (Optional)</label>
+                            <input type="number" id="editProductPrice" step="0.01" placeholder="e.g., 299">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                        <button class="btn btn-primary" onclick="saveEditProduct()">
+                            <i class="fas fa-save"></i> Save Changes
                         </button>
                     </div>
                 </div>
@@ -764,6 +1019,7 @@
             document.getElementById('loginContainer').classList.remove('show');
             document.getElementById('adminContainer').classList.add('show');
             loadAllProducts();
+            loadFromCloudOnStart();
         }
 
         // Handle Logout
@@ -791,6 +1047,8 @@
                 loadAllProducts();
             } else if (tabName === 'stats') {
                 loadStatistics();
+            } else if (tabName === 'cloud-backup') {
+                loadCloudConfig();
             }
         }
 
@@ -963,6 +1221,9 @@
                                     <button class="edit-btn" onclick="addImagesToProduct('${product.id}', '${category}', '${product.name}')">
                                         <i class="fas fa-image"></i> Add Images
                                     </button>
+                                    <button class="edit-btn edit-btn-primary" onclick="openEditModal('${product.id}', '${category}')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
                                     <button class="delete-btn" onclick="deleteProduct('${product.id}', '${category}')">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
@@ -1000,9 +1261,68 @@
             }
         }
 
-        // Edit Product (placeholder)
-        function editProduct(productId, category) {
-            showMessage('Edit functionality coming soon!', 'success');
+        // Edit Product functions
+        let editingProductId = null;
+        let editingProductCategory = null;
+
+        function openEditModal(productId, category) {
+            editingProductId = productId;
+            editingProductCategory = category;
+
+            const products = JSON.parse(localStorage.getItem('crochetProducts') || '{}');
+            if (!products[category]) return;
+
+            const product = products[category].find(p => p.id == productId);
+            if (!product) return;
+
+            document.getElementById('editProductId').value = productId;
+            document.getElementById('editProductCategory').value = category;
+            document.getElementById('editProductName').value = product.name;
+            document.getElementById('editProductDescription').value = product.description || '';
+            document.getElementById('editProductPrice').value = product.price || '';
+
+            document.getElementById('editProductModal').classList.add('show');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editProductModal').classList.remove('show');
+            editingProductId = null;
+            editingProductCategory = null;
+        }
+
+        function saveEditProduct() {
+            const productId = document.getElementById('editProductId').value;
+            const category = document.getElementById('editProductCategory').value;
+            const name = document.getElementById('editProductName').value;
+            const description = document.getElementById('editProductDescription').value;
+            const price = document.getElementById('editProductPrice').value;
+
+            if (!name) {
+                showMessage('Product name is required!', 'error');
+                return;
+            }
+
+            let products = JSON.parse(localStorage.getItem('crochetProducts') || '{}');
+
+            if (products[category]) {
+                const productIndex = products[category].findIndex(p => p.id == productId);
+                if (productIndex !== -1) {
+                    products[category][productIndex].name = name;
+                    products[category][productIndex].description = description;
+                    products[category][productIndex].price = price || null;
+
+                    try {
+                        localStorage.setItem('crochetProducts', JSON.stringify(products));
+                    } catch (e) {
+                        showMessage('Storage full!', 'error');
+                        return;
+                    }
+
+                    showMessage('Product updated successfully!', 'success');
+                    closeEditModal();
+                    loadAllProducts();
+                }
+            }
         }
 
         // Store current product for adding images
@@ -1115,6 +1435,15 @@
             let statsHtml = '';
             let total = 0;
 
+            const gradients = {
+                accessories: 'linear-gradient(135deg, #B24B2F, #D26B41)',
+                animals: 'linear-gradient(135deg, #2d5016, #4a7c2e)',
+                decor: 'linear-gradient(135deg, #7b4f9e, #b07cd8)',
+                gifts: 'linear-gradient(135deg, #c0392b, #e74c3c)',
+                custom: 'linear-gradient(135deg, #1a5276, #3498db)',
+                baby: 'linear-gradient(135deg, #D26B41, #f0a77e)'
+            };
+
             Object.keys(products).forEach(category => {
                 const count = products[category].length;
                 total += count;
@@ -1126,9 +1455,10 @@
                     custom: '🧐',
                     baby: '👶'
                 };
+                const gradient = gradients[category] || 'linear-gradient(135deg, #B24B2F, #D26B41)';
                 
                 statsHtml += `
-                    <div class="stat-card">
+                    <div class="stat-card" style="background: ${gradient};">
                         <h3>${icons[category] || '📦'} ${count}</h3>
                         <p>${category.charAt(0).toUpperCase() + category.slice(1)}</p>
                     </div>
@@ -1149,11 +1479,114 @@
             }, 3000);
         }
 
-        // Close modal when clicking outside
+        // Cloud Config Functions
+        function loadCloudConfig() {
+            const apiKey = localStorage.getItem('jsonbinApiKey') || '';
+            const binId = localStorage.getItem('jsonbinBinId') || '';
+            document.getElementById('jsonbinApiKey').value = apiKey;
+            document.getElementById('jsonbinBinId').value = binId;
+        }
+
+        function saveCloudConfig() {
+            const apiKey = document.getElementById('jsonbinApiKey').value;
+            const binId = document.getElementById('jsonbinBinId').value;
+            if (!apiKey || !binId) {
+                showMessage('Please fill in both API Key and Bin ID!', 'error');
+                return;
+            }
+            localStorage.setItem('jsonbinApiKey', apiKey);
+            localStorage.setItem('jsonbinBinId', binId);
+            showMessage('Cloud configuration saved!', 'success');
+        }
+
+        async function syncToCloud() {
+            const apiKey = localStorage.getItem('jsonbinApiKey');
+            const binId = localStorage.getItem('jsonbinBinId');
+            if (!apiKey || !binId) {
+                showMessage('Please configure JSONBin API Key and Bin ID first!', 'error');
+                return;
+            }
+            const products = localStorage.getItem('crochetProducts') || '{}';
+            try {
+                showMessage('Syncing to cloud...', 'success');
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': apiKey
+                    },
+                    body: products
+                });
+                if (response.ok) {
+                    showMessage('Products synced to cloud successfully!', 'success');
+                } else {
+                    showMessage('Failed to sync. Check your credentials.', 'error');
+                }
+            } catch (e) {
+                showMessage('Network error. Check your connection.', 'error');
+            }
+        }
+
+        async function restoreFromCloud() {
+            const apiKey = localStorage.getItem('jsonbinApiKey');
+            const binId = localStorage.getItem('jsonbinBinId');
+            if (!apiKey || !binId) {
+                showMessage('Please configure JSONBin API Key and Bin ID first!', 'error');
+                return;
+            }
+            try {
+                showMessage('Restoring from cloud...', 'success');
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Master-Key': apiKey
+                    }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    const products = data.record || data;
+                    localStorage.setItem('crochetProducts', JSON.stringify(products));
+                    showMessage('Products restored from cloud successfully!', 'success');
+                    loadAllProducts();
+                    loadStatistics();
+                } else {
+                    showMessage('Failed to restore. Check your credentials.', 'error');
+                }
+            } catch (e) {
+                showMessage('Network error. Check your connection.', 'error');
+            }
+        }
+
+        async function loadFromCloudOnStart() {
+            const apiKey = localStorage.getItem('jsonbinApiKey');
+            const binId = localStorage.getItem('jsonbinBinId');
+            if (!apiKey || !binId) return;
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+                    method: 'GET',
+                    headers: { 'X-Master-Key': apiKey }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    const products = data.record || data;
+                    localStorage.setItem('crochetProducts', JSON.stringify(products));
+                    loadAllProducts();
+                    loadStatistics();
+                }
+            } catch (e) {
+                // Silently fail - localStorage data will be used
+            }
+        }
+
+        // Close modals when clicking outside
         window.addEventListener('click', (e) => {
             const addImagesModal = document.getElementById('addImagesModal');
             if (e.target === addImagesModal) {
                 closeAddImagesModal();
+            }
+            const editProductModal = document.getElementById('editProductModal');
+            if (e.target === editProductModal) {
+                closeEditModal();
             }
         });
     </script>
