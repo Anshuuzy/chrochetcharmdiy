@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Charm DIY - Handmade Crochet Magic from Raipur</title>
+    <meta name="description"
+        content="Discover adorable handmade crochet toys, decor & more from Crochet Charm DIY in Raipur, Chhattisgarh. Custom orders welcome!">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #2a1810;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #7A2F10 0%, #A34A29 50%, #C66A45 100%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffece8;
+            text-decoration: none;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        } 
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nav-links a:hover {
+            color: #D26B41;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn {
+            background: #B24B2F;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cta-btn:hover {
+            background: #D26B41;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(210, 107, 65, 0.35);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #8B320F 0%, #B85A33 50%, #DF8D5F 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            transition: all 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff8f2;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #fff4ee;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+        }
+            
+        
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* Offers Section */
+        .offers {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 80px 0;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #B24B2F;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-top: 5px solid #B24B2F;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(178, 75, 47, 0.25);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .offer-icon {
+            font-size: 3rem;
+            color: #B24B2F;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .offer-card:hover .offer-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .offer-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #8A3510 0%, #B85632 50%, #D6865A 100%);
+            transition: background 0.8s ease-in-out;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #B24B2F;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .search-box:focus {
+            box-shadow: 0 0 20px rgba(178, 75, 47, 0.4);
+            border-color: #D26B41;
+            transform: scale(1.02);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.08) rotateZ(2deg);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instagram-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #8B320F 0%, #B24B2F 50%, #D77C58 100%);
+            color: white;
+            transition: all 0.8s ease;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .contact-info i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-content h2 {
+            color: #d63384;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .modal-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 100%);
+            color: white;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(131, 58, 180, 0.4);
+        }
+
+        .btn-gmail {
+            background: #B24B2F;
+            color: white;
+        }
+
+        .btn-gmail:hover {
+            background: #D26B41;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(178, 75, 47, 0.35);
+        }
+
+        .btn-close-modal {
+            background: #e9ecef;
+            color: #333;
+            margin-top: 0.5rem;
+        }
+
+        .btn-close-modal:hover {
+            background: #dee2e6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .modal-content {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+
+<body> <!-- Header -->
+    <header>
+        <nav class="container"> <a href="#" class="logo">🧶 Crochet Charm DIY</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul> <button class="cta-btn" onclick="showContactModal()">📱 Contact Us</button>
+        </nav>
+    </header> 
+    
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <h2>Get in Touch 💌</h2>
+            <p>Choose your preferred way to reach us</p>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-instagram" onclick="redirectToInstagram()">
+                    <i class="fab fa-instagram"></i> Message on Instagram
+                </button>
+                <button class="modal-btn btn-gmail" onclick="redirectToGmail()">
+                    <i class="fas fa-envelope"></i> Message on Gmail
+                </button>
+                <button class="modal-btn btn-close-modal" onclick="closeContactModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Handmade Crochet Magic!</h1>
+            <p>Adorable toys, accesories & gifts made with love in Raipur</p>
+            <div class="hero-buttons"> <a href="#offers" class="cta-btn">Grab Special Offers</a> <a
+                    href="https://www.instagram.com/crochetcharmdiy" target="_blank"
+                    class="cta-btn" style="background: #833ab4;">View Instagram</a> </div>
+        </div>
+    </section> <!-- Offers -->
+    <section id="offers" class="offers">
+        <div class="container">
+            <h2 class="section-title">🎉 Limited Time Offers</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon"> <i class="fas fa-percentage"></i> </div>
+                    <h3>1st Order Special</h3>
+                    <p><strong>15% OFF</strong> on your first order!<br>Use code: <code>FIRSTCHARM</code></p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon"> <i class="fas fa-truck"></i> </div>
+                    <h3>Free Shipping</h3>
+                    <p>Free delivery on orders up to <strong>₹999</strong><br>Fast shipping across India!</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon"> <i class="fas fa-gift"></i> </div>
+                    <h3>Custom Orders</h3>
+                    <p>Want something special? <br><strong>DM us on Instagram</strong> for custom crochet magic!</p>
+                </div>
+            </div>
+        </div>
+    </section> <!-- Gallery -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">✨ Our Crochet Creations</h2>
+            
+            <div class="search-container">
+                <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search items (e.g., Animals, Decor, Gifts...)" >
+            </div>
+
+            <div class="gallery-grid"> <!-- Placeholder images - replace with your actual Instagram photos -->
+                <a href="products.html?category=accessories" class="gallery-item" data-category="accessories"
+                    style="background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    🎀 Accessories </a>
+                <a href="products.html?category=animals" class="gallery-item" data-category="animals"
+                    style="background: linear-gradient(45deg, #a8edea, #fed6e3); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    🐻 Cute Animals </a>
+                <a href="products.html?category=decor" class="gallery-item" data-category="decor"
+                    style="background: linear-gradient(45deg, #ffecd2, #fcb69f); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    🌸 Home Decor </a>
+                <a href="products.html?category=gifts" class="gallery-item" data-category="gifts"
+                    style="background: linear-gradient(45deg, #a1c4fd, #c2e9fb); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    🎁 Gifts & More </a>
+                <a href="products.html?category=custom" class="gallery-item" data-category="custom"
+                    style="background: linear-gradient(45deg, #ff9a9e, #fecfef); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    🧐 Customised Items </a>
+                <a href="products.html?category=baby" class="gallery-item" data-category="baby"
+                    style="background: linear-gradient(45deg, #d299c2, #fef9d7); display: flex; align-items: center; justify-content: center; color: #d63384; font-size: 1.2rem; font-weight: 600; text-decoration: none; cursor: pointer;">
+                    👶 Baby Gifts </a>
+            </div>
+            <div class="instagram-link"> <a href="https://www.instagram.com/crochetcharmdiy"
+                    target="_blank" class="cta-btn" style="font-size: 1.2rem; padding: 1rem 2rem;"> <i
+                        class="fab fa-instagram"></i> See More on Instagram </a> </div>
+        </div>
+    </section> <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">📍 Visit Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info"> <i class="fas fa-map-marker-alt"></i>
+                    <h3>Our Location</h3>
+                    <p>Chhattisgarh, Raipur<br> Near Anupam Garden<br> Infront of Ashirwad Hospital</p>
+                </div>
+                     <div class="contact-info"> <i class="fab fa-instagram"></i>
+                    <h3>Follow Us</h3>
+                    <p>@crochetcharmdiy<br>@craftyayuu<br>DM for orders & queries</p>
+                </div>
+            </div>
+        </div>
+    </section> <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crochet Charm DIY. Made with ❤️ in Raipur. All rights reserved.</p>
+        </div>
+    </footer>
+    <script> 
+        // Smooth scrolling 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { 
+            anchor.addEventListener('click', function (e) { 
+                e.preventDefault(); 
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); 
+            }); 
+        }); 
+        
+        // Navbar scroll effect 
+        window.addEventListener('scroll', () => { 
+            const header = document.querySelector('header'); 
+            if (window.scrollY > 100) { 
+                header.style.background = 'rgba(255, 154, 158, 0.95)'; 
+                header.style.backdropFilter = 'blur(10px)'; 
+            } else { 
+                header.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)'; 
+                header.style.backdropFilter = 'none'; 
+            } 
+        }); 
+        
+        // Gallery search functionality 
+        const searchBox = document.getElementById('searchBox'); 
+        searchBox.addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') { 
+                const searchTerm = e.target.value.trim(); 
+                if (searchTerm) { 
+                    window.location.href = 'products.html?search=' + encodeURIComponent(searchTerm); 
+                } 
+            } 
+        }); 
+        
+        // Contact Modal Functions
+        function showContactModal() {
+            document.getElementById('contactModal').classList.add('show');
+        }
+        
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('show');
+        }
+        
+        function redirectToInstagram() {
+            window.open('https://www.instagram.com/crochetcharmdiy', '_blank');
+            closeContactModal();
+        }
+        
+        function redirectToGmail() {
+            window.location.href = 'mailto:ayushisharmaa1718@gmail.com?subject=Hello%20Crochet%20Charm%20DIY&body=Hi,%20I%20would%20like%20to%20know%20more%20about%20your%20products!';
+            closeContactModal();
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeContactModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Crochet Charm DIY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #7A2F10 0%, #A34A29 50%, #C66A45 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn {
+            background: #B24B2F;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .back-btn:hover {
+            background: #D26B41;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(178, 75, 47, 0.4);
+        }
+
+        /* Product Container */
+        .product-detail {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Image Section (Amazon Style) */
+        .image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: zoom-in;
+            transition: all 0.4s ease;
+        }
+
+        .main-image:hover {
+            border-color: #B24B2F;
+            box-shadow: 0 8px 20px rgba(178, 75, 47, 0.2);
+        }
+
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+
+        .main-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #B24B2F;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(178, 75, 47, 0.3);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Details Section (Amazon Style) */
+        .details-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            color: #111;
+            line-height: 1.3;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #888;
+        }
+
+        .rating i {
+            color: #B24B2F;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        .price-section {
+            padding: 15px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #B24B2F;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
+        }
+
+        .price-info {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #B24B2F 0%, #D26B41 100%);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            animation: fadeInLeft 0.6s ease;
+        }
+
+        /* Description Section */
+        .description-section {
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #111;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .description-text {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Highlights */
+        .highlights {
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .highlights-list {
+            list-style: none;
+        }
+
+        .highlights-list li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlights-list li:before {
+            content: "✓";
+            color: #D26B41;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #B24B2F;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #D26B41;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(178, 75, 47, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #111;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            border-color: #B24B2F;
+            background: #f8f9fa;
+            transform: scale(1.02);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .loading i {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Contact Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .modal-btn.instagram {
+            background: linear-gradient(135deg, #B24B2F 0%, #D26B41 100%);
+            color: white;
+        }
+
+        .modal-btn.gmail {
+            background: #d63384;
+            color: white;
+        }
+
+        .modal-btn.close {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .modal-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .price {
+                font-size: 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</button>
+            <h1 style="color: #111; font-size: 1.5rem;">Product Details</h1>
+            <div style="width: 100px;"></div>
+        </div>
+
+        <!-- Product Detail -->
+        <div id="productContainer" class="product-detail">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading product...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <h2>Order 🛍️</h2>
+            <p id="productNameDisplay"></p>
+            <p>How would you like to order?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn instagram" onclick="orderViaInstagram()">
+                    <i class="fab fa-instagram"></i> Message on Instagram
+                </button>
+                <button class="modal-btn gmail" onclick="orderViaGmail()">
+                    <i class="fas fa-envelope"></i> Message on Gmail
+                </button>
+                <button class="modal-btn close" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentProduct = null;
+        let currentImageIndex = 0;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const productData = sessionStorage.getItem('selectedProduct');
+            if (productData) {
+                currentProduct = JSON.parse(productData);
+                displayProduct();
+            } else {
+                document.getElementById('productContainer').innerHTML = '<div class="loading"><p>No product found. Please go back and select a product.</p></div>';
+            }
+        });
+
+        // Helper to detect valid image source strings
+        function isValidImageSrc(src) {
+            if (typeof src !== 'string') return false;
+            const trimmed = src.trim();
+            return trimmed.length > 0 && trimmed !== '🧶';
+        }
+
+        // Display Product
+        function displayProduct() {
+            if (!currentProduct) return;
+
+            const container = document.getElementById('productContainer');
+            const images = currentProduct.images && currentProduct.images.length > 0 
+                ? currentProduct.images 
+                : ['🧶'];
+            
+            const thumbnails = images.map((img, idx) => `
+                <div class="thumbnail ${idx === 0 ? 'active' : ''}" onclick="switchImage(${idx})">
+                    ${isValidImageSrc(img) ? `<img src="${img}" alt="Product image ${idx + 1}">` : '<div style="font-size: 2rem; display: flex; align-items: center; justify-content: center; height: 100%;">🧶</div>'}
+                </div>
+            `).join('');
+
+            const mainImage = isValidImageSrc(images[0])
+                ? `<img src="${images[0]}" alt="${currentProduct.name}" onclick="openFullImage(0)" title="Click to open full image">`
+                : '<div style="font-size: 4rem;">🧶</div>';
+
+            container.innerHTML = `
+                <div class="image-section">
+                    <div class="main-image" id="mainImage">
+                        ${mainImage}
+                    </div>
+                    <div class="thumbnail-gallery">
+                        ${thumbnails}
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <span class="category-badge">${currentProduct.category ? currentProduct.category.toUpperCase() : 'PRODUCT'}</span>
+                    <h1 class="product-title">${currentProduct.name}</h1>
+                    
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>Handmade with Love</span>
+                    </div>
+
+                    <div class="price-section">
+                        <div class="price">₹${currentProduct.price || 'Contact for price'}</div>
+                        <div class="price-info">Inclusive of all taxes</div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="orderNow()">
+                            <i class="fas fa-shopping-cart"></i> Order Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="addToWishlist()">
+                            <i class="fas fa-heart"></i> Save for Later
+                        </button>
+                    </div>
+
+                    <div class="description-section">
+                        <div class="section-title">About this item</div>
+                        <p class="description-text">${currentProduct.description || 'Beautiful handmade crochet item crafted with love and care.'}</p>
+                    </div>
+
+                    <div class="highlights">
+                        <div class="section-title">Why you'll love this</div>
+                        <ul class="highlights-list">
+                            <li>Handmade with premium materials</li>
+                            <li>Unique and one-of-a-kind design</li>
+                            <li>Made with love from Raipur</li>
+                            <li>Perfect gift for loved ones</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Switch Image
+        function switchImage(index) {
+            if (!currentProduct || !currentProduct.images) return;
+            currentImageIndex = index;
+            
+            // Update thumbnails
+            document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
+                thumb.classList.toggle('active', idx === index);
+            });
+
+            // Update main image
+            const mainImageContainer = document.getElementById('mainImage');
+            const img = currentProduct.images[index];
+            if (isValidImageSrc(img)) {
+                mainImageContainer.innerHTML = `<img src="${img}" alt="Product image ${index + 1}" onclick="openFullImage(${index})" title="Click to open full image">`;
+            } else {
+                mainImageContainer.innerHTML = '<div style="font-size: 4rem;">🧶</div>';
+            }
+        }
+
+        // Open full image in a new tab or window
+        function openFullImage(index) {
+            if (!currentProduct || !currentProduct.images) return;
+            const img = currentProduct.images[index];
+            if (isValidImageSrc(img)) {
+                window.open(img, '_blank');
+            }
+        }
+
+        // Order Now
+        function orderNow() {
+            document.getElementById('productNameDisplay').textContent = `Product: ${currentProduct.name}`;
+            document.getElementById('contactModal').classList.add('show');
+        }
+
+        // Add to Wishlist
+        function addToWishlist() {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            if (!wishlist.find(p => p.id === currentProduct.id)) {
+                wishlist.push(currentProduct);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            alert('Added to wishlist!');
+        }
+
+        // Order via Instagram
+        function orderViaInstagram() {
+            const message = `Hi! I'm interested in ordering: ${currentProduct.name}. Can you provide more details?`;
+            window.open(`https://www.instagram.com/crochetcharmdiy?igsh=bmFzcmU1bTU4djcx`, '_blank');
+            closeModal();
+        }
+
+        // Order via Gmail
+        function orderViaGmail() {
+            const subject = `Order Inquiry: ${currentProduct.name}`;
+            const body = `Hi Crochet Charm DIY,\n\nI'm interested in ordering: ${currentProduct.name}.\nPrice: ₹${currentProduct.price || 'Contact for price'}\n\nCould you please provide more details and delivery information?\n\nThank you!`;
+            window.location.href = `mailto:ayushisharmaa1718@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            closeModal();
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        // Go Back
+        function goBack() {
+            window.history.back();
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
