@@ -1163,8 +1163,10 @@
                 if (response.ok) {
                     const data = await response.json();
                     const cloudProducts = data.record || data;
-                    localStorage.setItem('crochetProducts', JSON.stringify(cloudProducts));
-                    productsData = mergeProductData({}, cloudProducts);
+                    const localProducts = JSON.parse(localStorage.getItem('crochetProducts') || '{}');
+                    const merged = mergeProductData(cloudProducts, localProducts);
+                    localStorage.setItem('crochetProducts', JSON.stringify(merged));
+                    productsData = merged;
                     buildProductMap();
                 }
             } catch (e) {

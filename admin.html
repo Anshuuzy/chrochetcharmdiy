@@ -1634,8 +1634,21 @@
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    const products = data.record || data;
-                    localStorage.setItem('crochetProducts', JSON.stringify(products));
+                    const cloudProducts = data.record || data;
+                    const localProducts = JSON.parse(localStorage.getItem('crochetProducts') || '{}');
+                    const merged = {};
+                    const allCats = new Set([...Object.keys(cloudProducts), ...Object.keys(localProducts)]);
+                    allCats.forEach(cat => {
+                        const cloud = Array.isArray(cloudProducts[cat]) ? cloudProducts[cat] : [];
+                        const local = Array.isArray(localProducts[cat]) ? localProducts[cat] : [];
+                        const ids = new Set();
+                        merged[cat] = [];
+                        [...local, ...cloud].forEach(p => {
+                            const id = p && p.id ? p.id : JSON.stringify(p);
+                            if (!ids.has(id)) { ids.add(id); merged[cat].push(p); }
+                        });
+                    });
+                    localStorage.setItem('crochetProducts', JSON.stringify(merged));
                     loadAllProducts();
                     loadStatistics();
                 }
